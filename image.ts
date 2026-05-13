@@ -63,6 +63,16 @@ async function openaiEditRequest(
   };
 }
 
+/**
+ * `@dougschaefer/openai-image` model — image generation and editing via
+ * OpenAI's image endpoints (gpt-image-1, DALL-E 3). Generate produces
+ * an image from a text prompt with size/quality/style controls. Edit
+ * accepts one or more reference images plus a prompt and returns a
+ * modified output — useful for stylistic transfers, background swaps,
+ * and brand-kit constrained generation. API key supplied via
+ * globalArguments (vault-resolved); outputs are base64-encoded for
+ * downstream chaining or local persistence.
+ */
 export const model = {
   type: "@dougschaefer/openai-image",
   version: "2026.04.02.1",
