@@ -75,7 +75,7 @@ async function openaiEditRequest(
  */
 export const model = {
   type: "@dougschaefer/openai-image",
-  version: "2026.05.26.1",
+  version: "2026.05.27.1",
   globalArguments: GlobalArgsSchema,
   resources: {
     image: {
@@ -95,6 +95,7 @@ export const model = {
     generate: {
       description:
         "Generate an image from a text prompt using OpenAI gpt-image-1.",
+      labels: ["live"],
       arguments: z.object({
         prompt: z.string().describe(
           "Text description of the image to generate",
@@ -172,7 +173,7 @@ export const model = {
           {
             prompt: args.prompt,
             revisedPrompt: result.revisedPrompt ?? "",
-            model: "gpt-image-1",
+            model: args.model,
             size: args.size,
             filePath,
           },
@@ -185,6 +186,7 @@ export const model = {
     edit: {
       description:
         "Edit an existing image using a text prompt. Send an image file and describe the changes.",
+      labels: ["live"],
       arguments: z.object({
         prompt: z
           .string()
@@ -258,6 +260,39 @@ export const model = {
         );
 
         return { dataHandles: [handle] };
+      },
+    },
+  },
+
+  checks: {
+    "openai-reachable": {
+      description:
+        "Verify the OpenAI API key is valid and the images endpoint is reachable before generating or editing.",
+      labels: ["live"],
+      appliesTo: ["generate", "edit"],
+      execute: async (context) => {
+        try {
+          const resp = await fetch("https://api.openai.com/v1/models", {
+            headers: {
+              Authorization: `Bearer ${context.globalArgs.apiKey}`,
+            },
+          });
+          if (!resp.ok) {
+            const body = await resp.text();
+            return {
+              pass: false,
+              errors: [
+                `OpenAI API key check failed (${resp.status}): ${body}`,
+              ],
+            };
+          }
+          return { pass: true };
+        } catch (err) {
+          return {
+            pass: false,
+            errors: [`OpenAI API unreachable: ${String(err)}`],
+          };
+        }
       },
     },
   },
