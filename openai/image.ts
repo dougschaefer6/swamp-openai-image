@@ -75,7 +75,7 @@ async function openaiEditRequest(
  */
 export const model = {
   type: "@dougschaefer/openai-image",
-  version: "2026.05.27.1",
+  version: "2026.06.08.1",
   globalArguments: GlobalArgsSchema,
   resources: {
     image: {

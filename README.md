@@ -99,7 +99,7 @@ OpenAI charges per image generated. At the time of writing, gpt-image-1 costs ap
 
 ## Quality and Testing
 
-This extension has been tested against the OpenAI API in the American Sound integration lab. American Sound is solely responsible for this integration. OpenAI does not provide direct support for third-party swamp extensions.
+This extension has been tested against the OpenAI API in a production integration lab. The maintainer is solely responsible for this integration. OpenAI does not provide direct support for third-party swamp extensions.
 
 ## License
 
