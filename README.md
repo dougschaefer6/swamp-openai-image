@@ -103,4 +103,4 @@ This extension has been tested against the OpenAI API in a production integratio
 
 ## License
 
-MIT. See [LICENSE](LICENSE) for details.
+MIT. See [LICENSE](LICENSE.txt) for details.
