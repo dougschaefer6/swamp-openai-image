@@ -1,7 +1,7 @@
 manifestVersion: 1
 name: "@dougschaefer/openai-image"
-version: "2026.06.29.1"
-description: "OpenAI image generation and editing via gpt-image-1 and DALL-E 3 — text-to-image generation, image editing with reference images, model selection, and configurable size and quality. Vault-based API key."
+version: "2026.10.06.1"
+description: "OpenAI image generation and editing via OpenAI's GPT image models (defaults gpt-image-2.5-flare for generation, gpt-image-2.5-sunburst for edits) — text-to-image generation, image editing with reference images, free-form model selection with pass-through for newer models, per-model size and quality validation, and local refusal of shut-down models. Vault-based API key."
 repository: https://github.com/dougschaefer6/swamp-openai-image
 additionalFiles:
   - README.md
@@ -11,6 +11,5 @@ labels:
   - image
   - ai
   - generation
-  - dalle
 models:
   - openai/image.ts
